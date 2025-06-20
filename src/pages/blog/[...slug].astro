@@ -1,8 +1,11 @@
 ---
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
-import { format } from 'date-fns'
-import { th } from 'date-fns/locale'
+import { getCollection, getEntry } from 'astro:content'
+import BlogContent from '../../components/BlogContent.astro'
+import BlogHero from '../../components/BlogHero.astro'
 import Layout from '../../components/Layout.astro'
+import RecommendedPosts from '../../components/RecommendedPosts.astro'
+import { formatThaiDate } from '../../utils/dateUtils'
+import { getRecommendedPosts } from '../../utils/recommendationUtils'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -12,14 +15,16 @@ export async function getStaticPaths() {
   }))
 }
 
-type Props = CollectionEntry<'blog'>
-
 const { slug } = Astro.params
 const post = await getEntry('blog', slug)
 if (!post) throw new Error(`Post not found: ${slug}`)
 
 const { Content } = await post.render()
-const formattedDate = format(post.data.pubDate, 'dd MMMM yyyy', { locale: th })
+const formattedDate = formatThaiDate(post.data.pubDate)
+
+// Get all posts for recommendations
+const allPosts = await getCollection('blog', ({ data }) => !data.draft)
+const recommendedPosts = getRecommendedPosts(allPosts, slug)
 ---
 
 <Layout
@@ -27,72 +32,16 @@ const formattedDate = format(post.data.pubDate, 'dd MMMM yyyy', { locale: th })
   description={post.data.description}
   image={post.data.heroImage}
 >
-  <article class="px-4 py-8 sm:px-6 lg:px-8">
-    <!-- Header -->
-    <header class="mb-8 text-center">
-      <div class="mb-6">
-        {
-          post.data.tags.map((tag) => (
-            <span class="theme-tag mr-2 mb-2 inline-block rounded-full px-3 py-1 text-sm">
-              {tag}
-            </span>
-          ))
-        }
-      </div>
+  <BlogHero
+    title={post.data.title}
+    description={post.data.description}
+    heroImage={post.data.heroImage}
+    tags={post.data.tags}
+    pubDate={post.data.pubDate}
+    formattedDate={formattedDate}
+  />
 
-      <h1
-        class="theme-text-primary mb-4 text-3xl leading-tight font-bold md:text-4xl"
-      >
-        {post.data.title}
-      </h1>
+  <BlogContent Content={Content} />
 
-      <p class="theme-text-secondary mx-auto mb-6 text-lg">
-        {post.data.description}
-      </p>
-
-      <time
-        class="theme-text-muted text-sm"
-        datetime={post.data.pubDate.toISOString()}
-      >
-        {formattedDate}
-      </time>
-    </header>
-
-    <!-- Hero Image -->
-    {
-      post.data.heroImage && (
-        <div class="mb-8">
-          <img
-            src={post.data.heroImage}
-            alt={post.data.title}
-            class="h-64 w-full rounded-lg object-cover shadow-lg md:h-96"
-          />
-        </div>
-      )
-    }
-
-    <!-- Content -->
-    <div class="prose prose-lg mx-auto mb-8 max-w-none">
-      <Content />
-    </div>
-
-    <!-- Back Link -->
-    <div class="theme-border-primary border-t pt-8 text-center">
-      <a href="/" class="theme-link inline-flex items-center font-medium">
-        <svg
-          class="mr-2 h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        กลับหน้าแรก
-      </a>
-    </div>
-  </article>
+  <RecommendedPosts posts={recommendedPosts} />
 </Layout>

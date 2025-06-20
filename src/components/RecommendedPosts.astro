@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import BlogCard from './BlogCard.astro'
+
+export interface Props {
+  posts: CollectionEntry<'blog'>[]
+}
+
+const { posts } = Astro.props
+---
+
+<!-- Recommended Posts Section -->
+<section class="bg-gray-50 py-16 dark:bg-gray-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+        บทความแนะนำ
+      </h2>
+      <p class="mx-auto max-w-2xl text-gray-600 dark:text-gray-400">
+        ค้นพบบทความอื่นๆ ที่น่าสนใจและอาจเป็นประโยชน์สำหรับคุณ
+      </p>
+    </div>
+
+    {
+      posts.length > 0 ? (
+        <div class="grid gap-8 md:grid-cols-3">
+          {posts.map((post: CollectionEntry<'blog'>) => (
+            <div class="transform transition-all duration-300 hover:scale-105">
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                pubDate={post.data.pubDate}
+                heroImage={post.data.heroImage}
+                tags={post.data.tags}
+                slug={post.slug}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="py-8 text-center">
+          <p class="text-gray-600 italic dark:text-gray-400">
+            ยังไม่มีบทความแนะนำในขณะนี้
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>

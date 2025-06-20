@@ -1,0 +1,64 @@
+---
+export interface Props {
+  Content: any
+}
+
+const { Content } = Astro.props
+---
+
+<!-- Article Content -->
+<article class="relative bg-white py-16 dark:bg-gray-900">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <!-- Content -->
+    <div
+      class="prose prose-xl dark:prose-invert prose-headings:mt-8 prose-headings:mb-4 prose-p:mb-6 prose-p:leading-8 prose-h2:bg-gradient-to-r prose-h2:from-blue-50 prose-h2:to-indigo-50 prose-h2:p-4 prose-h2:rounded-lg prose-h2:border-l-4 prose-h2:border-blue-500 dark:prose-h2:from-slate-800 dark:prose-h2:to-slate-700 dark:prose-h2:border-blue-400 mx-auto max-w-none"
+    >
+      <Content />
+    </div>
+  </div>
+</article>
+
+<script>
+  // Smooth scroll for better UX
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add smooth reveal animation for content
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-4')
+            entry.target.classList.add('opacity-100', 'translate-y-0')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        rootMargin: '50px',
+        threshold: 0.1,
+      },
+    )
+
+    // Observe prose content - simplified approach
+    const proseElements = document.querySelectorAll('.prose > *')
+
+    // Show content immediately, then add animation
+    proseElements.forEach((el, index) => {
+      // Initially visible
+      el.classList.add(
+        'opacity-100',
+        'translate-y-0',
+        'transition-all',
+        'duration-300',
+      )
+    })
+  })
+</script>
+
+<style>
+  /* Minimal custom styles - ใช้ Tailwind modifiers แทน */
+  .prose pre {
+    font-family:
+      'JetBrains Mono', 'Fira Code', 'Monaco', 'Cascadia Code', 'Consolas',
+      monospace;
+  }
+</style>

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
 
 /* =================================
    Font Configuration
@@ -96,4 +97,15 @@ body {
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
+}
+
+
+/* Navigation backdrop */
+nav {
+  backdrop-filter: blur(20px);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

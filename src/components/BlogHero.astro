@@ -1,0 +1,122 @@
+---
+import {
+  generateGradientDataURL,
+  getRandomGradientIndex,
+} from '../utils/gradientGenerator'
+
+export interface Props {
+  title: string
+  description: string
+  heroImage?: string
+  tags: string[]
+  pubDate: Date
+  formattedDate: string
+}
+
+const { title, description, heroImage, tags, pubDate, formattedDate } =
+  Astro.props
+
+// Generate fallback gradient if no hero image
+const fallbackGradient = generateGradientDataURL(getRandomGradientIndex())
+const heroImageSrc = heroImage || fallbackGradient
+---
+
+<!-- Hero Section with Parallax Effect -->
+<section class="relative h-96 overflow-hidden md:h-[500px]">
+  <!-- Parallax Background Image -->
+  <div
+    id="hero-bg"
+    class="absolute inset-0 scale-110 transform bg-cover bg-center transition-transform duration-100 ease-out"
+    style={`background-image: url(${heroImageSrc})`}
+  >
+  </div>
+
+  <!-- Overlay - เข้มขึ้นเพื่อให้ text อ่านง่าย -->
+  {
+    heroImage && (
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+    )
+  }
+
+  <!-- Additional center overlay for better text readability -->
+  <div
+    class="bg-radial-gradient absolute inset-0 from-transparent via-black/30 to-transparent"
+  >
+  </div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex h-full items-center justify-center px-4 text-center text-white"
+  >
+    <div class="mx-auto max-w-4xl">
+      <!-- Tags -->
+      <div class="mb-4">
+        {
+          tags.map((tag: string) => (
+            <span
+              class="mr-2 mb-2 inline-block rounded-full border border-white/50 bg-black/40 px-3 py-1 text-sm font-medium text-white shadow-lg backdrop-blur-md"
+              style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);"
+            >
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <!-- Title -->
+      <h1
+        class="mb-4 text-3xl leading-tight font-bold text-white drop-shadow-2xl md:text-5xl"
+        style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 16px rgba(0, 0, 0, 0.6);"
+      >
+        {title}
+      </h1>
+
+      <!-- Description -->
+      <p
+        class="mx-auto mb-6 max-w-3xl text-lg leading-relaxed text-gray-100 drop-shadow-xl md:text-xl"
+        style="text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 0, 0, 0.5);"
+      >
+        {description}
+      </p>
+
+      <!-- Date -->
+      <time
+        class="text-sm text-gray-200 drop-shadow-lg"
+        style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);"
+        datetime={pubDate.toISOString()}
+      >
+        {formattedDate}
+      </time>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Parallax effect for hero section
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset
+    const hero = document.getElementById('hero-bg') as HTMLElement
+
+    if (hero) {
+      const speed = 0.3
+      hero.style.transform = `scale(1.1) translateY(${scrolled * speed}px)`
+    }
+  })
+</script>
+
+<style>
+  /* Radial gradient for better text readability */
+  .bg-radial-gradient {
+    background: radial-gradient(
+      circle at center,
+      transparent 20%,
+      rgba(0, 0, 0, 0.3) 60%,
+      transparent 100%
+    );
+  }
+
+  /* Parallax container */
+  .bg-fixed {
+    will-change: transform;
+  }
+</style>

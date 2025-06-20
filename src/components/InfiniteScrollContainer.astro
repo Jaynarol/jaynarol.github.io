@@ -326,19 +326,19 @@ const { allPosts, initialPosts, postsPerPage } = Astro.props
   /* Grid responsive improvements */
   @media (min-width: 640px) {
     #posts-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
   }
 
   @media (min-width: 1024px) {
     #posts-grid {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     }
   }
 
   @media (min-width: 1280px) {
     #posts-grid {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       max-width: none;
     }
   }

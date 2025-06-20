@@ -1,5 +1,7 @@
-<header class="theme-header theme-border-primary border-b shadow-sm">
-  <div class="px-4 sm:px-6 lg:px-8">
+<header
+  class="theme-header theme-border-primary fixed top-0 right-0 left-0 z-50 border-b border-gray-200/70 bg-white/60 shadow-sm backdrop-blur-md dark:border-gray-700/70 dark:bg-gray-900/60"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <!-- Logo -->
       <div class="flex-shrink-0">
@@ -87,3 +89,37 @@
     </div>
   </div>
 </header>
+
+<style>
+  /* Enhanced header styling */
+  header {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Smooth header animation */
+  header {
+    transition: all 0.3s ease;
+  }
+
+  /* Header shadow on scroll */
+  .header-scrolled {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+</style>
+
+<script>
+  // Add scroll effect to header
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header')
+    if (header) {
+      if (window.scrollY > 10) {
+        header.classList.add('header-scrolled')
+      } else {
+        header.classList.remove('header-scrolled')
+      }
+    }
+  })
+</script>
