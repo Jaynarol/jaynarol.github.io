@@ -1,53 +1,33 @@
 ---
-import { getCollection } from 'astro:content'
-import BlogCard from '../components/BlogCard.astro'
-import Layout from '../layouts/Layout.astro'
+import HeroSection from '../components/HeroSection.astro'
+import InfiniteScrollContainer from '../components/InfiniteScrollContainer.astro'
+import Layout from '../components/Layout.astro'
+import { getPostsData } from '../utils/blogUtils'
 
-// Get all blog posts
-const posts = await getCollection('blog', ({ data }) => {
-  return !data.draft
-})
+// Configuration
+const POSTS_PER_PAGE = 20
 
-// Sort by publication date
-posts.sort(
-  (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
-)
+// Get blog posts data
+const { allPosts, initialPosts } = await getPostsData(POSTS_PER_PAGE)
 ---
 
 <Layout title="Jaynarol Blog - บล็อกแห่งการเรียนรู้และแบ่งปัน">
-  <div class="space-y-8">
-    <!-- Simple Header -->
-    <div class="text-center">
-      <h1 class="theme-text-primary mb-4 text-3xl font-bold">
-        บล็อกแห่งการเรียนรู้
-      </h1>
-      <p class="theme-text-secondary">แบ่งปันความรู้และประสบการณ์</p>
-    </div>
+  <div class="min-h-screen">
+    <!-- Hero Section -->
+    <HeroSection />
 
-    <!-- Blog Posts -->
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        posts.map((post) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            heroImage={post.data.heroImage}
-            tags={post.data.tags}
-            slug={post.slug}
-          />
-        ))
-      }
-    </div>
-
-    <!-- No Posts -->
-    {
-      posts.length === 0 && (
-        <div class="py-12 text-center">
-          <p class="theme-text-muted">ยังไม่มีบทความ</p>
-        </div>
-      )
-    }
+    <!-- Infinite Scroll Container -->
+    <InfiniteScrollContainer
+      allPosts={allPosts}
+      initialPosts={initialPosts}
+      postsPerPage={POSTS_PER_PAGE}
+    />
   </div>
 </Layout>
+
+<style>
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

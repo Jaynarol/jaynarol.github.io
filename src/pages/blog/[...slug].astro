@@ -2,7 +2,7 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import { format } from 'date-fns'
 import { th } from 'date-fns/locale'
-import Layout from '../../layouts/Layout.astro'
+import Layout from '../../components/Layout.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -27,7 +27,7 @@ const formattedDate = format(post.data.pubDate, 'dd MMMM yyyy', { locale: th })
   description={post.data.description}
   image={post.data.heroImage}
 >
-  <article>
+  <article class="px-4 py-8 sm:px-6 lg:px-8">
     <!-- Header -->
     <header class="mb-8 text-center">
       <div class="mb-6">
