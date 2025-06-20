@@ -3,7 +3,7 @@ title: 'สร้างบล็อกด้วย Astro'
 description: 'เรียนรู้การสร้างบล็อกแบบ Static Site ด้วย Astro Framework'
 pubDate: 2025-01-02
 heroImage: 'https://dummyimage.com/600x600/ff0fff/fff.jpg'
-tags: ['เทคโนโลยี', 'Astro', 'Web Development']
+tags: ['เทคโนโลยี', 'Web Development']
 ---
 
 # สร้างบล็อกด้วย Astro
