@@ -5,6 +5,7 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jaynarol.github.io',
+  outDir: './docs',
   vite: {
     plugins: [tailwindcss()]
   },
