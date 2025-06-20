@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://jaynarol.github.io/sitemap-index.xml
