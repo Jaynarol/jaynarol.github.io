@@ -1,7 +1,7 @@
 ---
 title: 'สวัสดีชาวโลก'
 description: 'นี่คือบทความแรกของบล็อกแห่งการเรียนรู้และแบ่งปัน'
-pubDate: 2024-01-15
+pubDate: 2025-01-01
 heroImage: '/images/hello-world.jpg'
 tags: ['เทคโนโลยี', 'ธรรมะ']
 ---
