@@ -1,50 +1,80 @@
-/* Dark Theme - โทนมืดสบายตา */
+/* Dark Cool Theme - โทนม่วงฟ้าเย็นสบาย */
 :root {
-  /* Primary Colors - สีหลัก (เน้นฟ้าอ่อนในโทนมืด) */
-  --color-primary-50: #1e293b;
-  --color-primary-100: #334155;
-  --color-primary-200: #475569;
-  --color-primary-300: #64748b;
-  --color-primary-400: #94a3b8;
-  --color-primary-500: #cbd5e1;
-  --color-primary-600: #e2e8f0;
-  --color-primary-700: #f1f5f9;
-  --color-primary-800: #f8fafc;
-  --color-primary-900: #ffffff;
+  /* Primary Colors - สีหลัก (โทนม่วงฟ้า) */
+  --color-primary-50: #1e1b3a;
+  --color-primary-100: #2d2a54;
+  --color-primary-200: #3b1a6b;
+  --color-primary-300: #4c1d95;
+  --color-primary-400: #6b46c1;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #a78bfa;
+  --color-primary-700: #c4b5fd;
+  --color-primary-800: #ddd6fe;
+  --color-primary-900: #f3f4f6;
 
-  /* Neutral Colors - สีกลาง (โทนมืด) */
-  --color-neutral-50: #0f172a;
-  --color-neutral-100: #1e293b;
-  --color-neutral-200: #334155;
-  --color-neutral-300: #475569;
+  /* Neutral Colors - สีกลาง (โทนเทาฟ้า) */
+  --color-neutral-50: #0f0f23;
+  --color-neutral-100: #1e1b3a;
+  --color-neutral-200: #2d2a54;
+  --color-neutral-300: #3f3b6b;
   --color-neutral-400: #64748b;
   --color-neutral-500: #94a3b8;
   --color-neutral-600: #cbd5e1;
   --color-neutral-700: #e2e8f0;
   --color-neutral-800: #f1f5f9;
-  --color-neutral-900: #f8fafc;
+  --color-neutral-900: #ffffff;
+
+  /* Accent Colors - สีเสริม (โทนฟ้าม่วง) */
+  --color-accent-50: #1e1b3a;
+  --color-accent-100: #312e81;
+  --color-accent-200: #3730a3;
+  --color-accent-300: #4338ca;
+  --color-accent-400: #6366f1;
+  --color-accent-500: #8b5cf6;
 
   /* Semantic Colors - สีตามความหมาย */
-  --color-text-primary: var(--color-neutral-900);
-  --color-text-secondary: var(--color-neutral-600);
-  --color-text-muted: var(--color-neutral-500);
-  --color-text-inverse: var(--color-neutral-50);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0f0f23;
 
-  --color-bg-primary: var(--color-neutral-50);
-  --color-bg-secondary: var(--color-neutral-100);
-  --color-bg-accent: var(--color-neutral-200);
-  --color-bg-muted: var(--color-neutral-100);
+  --color-bg-primary: #0f0f23;
+  --color-bg-secondary: #1e1b3a;
+  --color-bg-accent: #2d2a54;
+  --color-bg-muted: #1e1b3a;
 
-  --color-border-primary: var(--color-neutral-200);
-  --color-border-secondary: var(--color-neutral-300);
+  --color-border-primary: #2d2a54;
+  --color-border-secondary: #3f3b6b;
 
+  /* Link Colors - สีลิงก์ (โทนฟ้าม่วงสดใส) */
   --color-link: #60a5fa;
   --color-link-hover: #3b82f6;
 
   /* Component Colors */
-  --color-tag-bg: var(--color-neutral-200);
-  --color-tag-text: var(--color-neutral-700);
+  --color-tag-bg: #2d2a54;
+  --color-tag-text: #c4b5fd;
   --color-card-bg: var(--color-bg-primary);
   --color-header-bg: var(--color-bg-primary);
   --color-footer-bg: var(--color-bg-primary);
+
+  /* Special Colors - สีพิเศษ */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #60a5fa;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-blue: #60a5fa;
+  --color-accent-indigo: #6366f1;
+
+  /* Gradient Colors - สีไล่ระดับ (ตามภาพ) */
+  --gradient-primary: linear-gradient(135deg, #3b1a6b 0%, #6b46c1 25%, #8b5cf6 50%, #60a5fa 100%);
+  --gradient-cool: linear-gradient(135deg, #1e1b3a 0%, #2d2a54 100%);
+  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #60a5fa 100%);
+  --gradient-purple-blue: linear-gradient(180deg, #3b1a6b 0%, #6b46c1 33%, #8b5cf6 66%, #60a5fa 100%);
+
+  /* Shadow Colors - สีเงา */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }

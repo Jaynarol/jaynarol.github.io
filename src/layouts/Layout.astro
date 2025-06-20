@@ -3,12 +3,14 @@ import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import '../styles/global.css'
 
-// 🎨 เปลี่ยนธีมที่นี่ - เลือก 1 ใน 5 ธีม
+// 🎨 เปลี่ยนธีมที่นี่ - เลือก 1 ใน 6 ธีม
 // import '../styles/themes/ocean.css' // โทนน้ำเงินสงบ (default)
-// import '../styles/themes/forest.css'    // โทนเขียวธรรมชาติ
-// import '../styles/themes/lavender.css'  // โทนม่วงหรูหรา
-// import '../styles/themes/sunset.css'    // โทนส้มอบอุ่น
-import '../styles/themes/dark.css' // โทนมืดสบายตา
+// import '../styles/themes/forest.css' // โทนเขียวธรรมชาติ
+// import '../styles/themes/lavender.css' // โทนม่วงหรูหรา
+// import '../styles/themes/sunset.css' // โทนส้มอบอุ่น
+// import '../styles/themes/dark.css' // โทนมืดอมฟ้า
+// import '../styles/themes/dark-neon.css' // โทนมืดอมเขียว
+import '../styles/themes/sky-warm.css' // โทนฟ้าอมอบอุ่น
 
 export interface Props {
   title: string
@@ -33,6 +35,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Google Fonts - Noto Sans Thai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
@@ -70,17 +80,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
       <Footer />
     </div>
-
-    <!-- Mobile Menu Script -->
-    <script>
-      const mobileMenuButton = document.getElementById('mobile-menu-button')
-      const mobileMenu = document.getElementById('mobile-menu')
-
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden')
-        })
-      }
-    </script>
   </body>
 </html>

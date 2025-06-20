@@ -1,0 +1,150 @@
+/* Sky Cool Theme - โทนฟ้าเย็นชุ่มชื้นสดชื่น */
+:root {
+  /* Primary Colors - สีหลัก (โทนฟ้าน้ำเงิน) */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+
+  /* Neutral Colors - สีกลาง (โทนเทาเย็น) */
+  --color-neutral-50: #f0fdfa;
+  --color-neutral-100: #ccfbf1;
+  --color-neutral-200: #99f6e4;
+  --color-neutral-300: #5eead4;
+  --color-neutral-400: #2dd4bf;
+  --color-neutral-500: #14b8a6;
+  --color-neutral-600: #0d9488;
+  --color-neutral-700: #0f766e;
+  --color-neutral-800: #115e59;
+  --color-neutral-900: #134e4a;
+
+  /* Accent Colors - สีเสริม (โทนเทอร์ควอยส์) */
+  --color-accent-50: #f0fdfa;
+  --color-accent-100: #ccfbf1;
+  --color-accent-200: #99f6e4;
+  --color-accent-300: #5eead4;
+  --color-accent-400: #2dd4bf;
+  --color-accent-500: #14b8a6;
+
+  /* Semantic Colors - สีตามความหมาย */
+  --color-text-primary: #f7fafc;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #cbd5e1;
+  --color-text-inverse: #1a202c;
+
+  --color-bg-primary: #1e293b;
+  --color-bg-secondary: #334155;
+  --color-bg-accent: rgba(20, 184, 166, 0.1);
+  --color-bg-muted: #475569;
+
+  --color-border-primary: #475569;
+  --color-border-secondary: rgba(20, 184, 166, 0.2);
+
+  /* Link Colors - สีลิงก์ (โทนฟ้าสดใสสำหรับ dark) */
+  --color-link: #60a5fa;
+  --color-link-hover: #3b82f6;
+
+  /* Component Colors - สีสำหรับคอมโพเนนต์ */
+  --color-tag-bg: rgba(20, 184, 166, 0.15);
+  --color-tag-text: #5eead4;
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+  --color-header-bg: linear-gradient(135deg, #0c4a6e 0%, #1e40af 50%, #2563eb 100%);
+  --color-footer-bg: #0c4a6e;
+
+  /* Special Colors - สีพิเศษ */
+  --color-success: #2dd4bf;
+  --color-warning: #06b6d4;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
+  --color-accent-blue: #60a5fa;
+  --color-accent-teal: #2dd4bf;
+  --color-accent-aqua: #5eead4;
+
+  /* Gradient Colors - สีไล่ระดับ (cool & fresh) */
+  --gradient-primary: linear-gradient(180deg, #0c4a6e 0%, #1e40af 25%, #60a5fa 75%, rgba(20, 184, 166, 0.3) 100%);
+  --gradient-header: linear-gradient(135deg, #0c4a6e 0%, #1e40af 50%, #2563eb 100%);
+  --gradient-cool: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(94, 234, 212, 0.2) 100%);
+  --gradient-sky: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  --gradient-aqua: linear-gradient(135deg, #14b8a6 0%, rgba(94, 234, 212, 0.5) 50%, rgba(20, 184, 166, 0.2) 100%);
+
+  /* Shadow Colors - สีเงา (อ่อนโยน) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-warm: 0 4px 6px -1px rgba(251, 191, 36, 0.1), 0 2px 4px -1px rgba(251, 191, 36, 0.06);
+
+  /* Hover & Focus Effects - เอฟเฟกต์ hover และ focus */
+  --hover-blue: rgba(96, 165, 250, 0.1);
+  --hover-teal: rgba(20, 184, 166, 0.1);
+  --hover-aqua: rgba(94, 234, 212, 0.15);
+
+  /* Animation Variables - ตัวแปรสำหรับแอนิเมชัน */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* Custom Component Styles - สไตล์คอมโพเนนต์เฉพาะ */
+.theme-header {
+  background: var(--color-header-bg);
+  color: var(--color-text-inverse);
+}
+
+.theme-header .theme-text-primary {
+  color: var(--color-text-primary);
+}
+
+.theme-header .theme-text-secondary {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.theme-header .theme-link:hover {
+  color: #2dd4bf;
+}
+
+.theme-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border-primary);
+}
+
+.theme-card:hover {
+  box-shadow: 0 8px 16px rgba(96, 165, 250, 0.2), 0 4px 8px rgba(20, 184, 166, 0.15);
+  transform: translateY(-3px);
+  background: rgba(20, 184, 166, 0.05);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.theme-tag {
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border: 1px solid rgba(20, 184, 166, 0.4);
+}
+
+.theme-tag:hover {
+  background: #2dd4bf;
+  color: #1e293b;
+  border: 1px solid #14b8a6;
+}
+
+/* Responsive Design Enhancements - ปรับปรุงการตอบสนอง */
+@media (max-width: 768px) {
+  .theme-header {
+    background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 100%);
+  }
+}
+
+/* Clean Sharp Effects - เอฟเฟกต์คมชัด */
+.theme-link:hover {
+  color: #2dd4bf;
+}
+
+body {
+  background: radial-gradient(ellipse at center, rgba(20, 184, 166, 0.02) 0%, transparent 70%);
+}

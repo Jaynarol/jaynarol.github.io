@@ -1,0 +1,92 @@
+/* Dark Neon Theme - โทนดาร์กนีออน */
+:root {
+  /* Primary Colors - สีหลัก (โทนนีออนไซยาน) */
+  --color-primary-50: #0c1621;
+  --color-primary-100: #1a2332;
+  --color-primary-200: #243447;
+  --color-primary-300: #0e4749;
+  --color-primary-400: #14b8a6;
+  --color-primary-500: #06d6a0;
+  --color-primary-600: #00ffcc;
+  --color-primary-700: #4dffda;
+  --color-primary-800: #80ffe6;
+  --color-primary-900: #b3fff0;
+
+  /* Neutral Colors - สีกลาง (โทนเทาดำ) */
+  --color-neutral-50: #0a0d14;
+  --color-neutral-100: #0f1419;
+  --color-neutral-200: #1a2332;
+  --color-neutral-300: #243447;
+  --color-neutral-400: #64748b;
+  --color-neutral-500: #94a3b8;
+  --color-neutral-600: #cbd5e1;
+  --color-neutral-700: #e2e8f0;
+  --color-neutral-800: #f1f5f9;
+  --color-neutral-900: #ffffff;
+
+  /* Accent Colors - สีเสริม (โทนนีออนเพิ่มเติม) */
+  --color-accent-50: #0a0d14;
+  --color-accent-100: #1a0033;
+  --color-accent-200: #2d1b5e;
+  --color-accent-300: #4c1d95;
+  --color-accent-400: #7c3aed;
+  --color-accent-500: #a855f7;
+
+  /* Semantic Colors - สีตามความหมาย */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0a0d14;
+
+  --color-bg-primary: #0a0d14;
+  --color-bg-secondary: #0f1419;
+  --color-bg-accent: #1a2332;
+  --color-bg-muted: #0f1419;
+
+  --color-border-primary: #243447;
+  --color-border-secondary: #1a2332;
+
+  /* Link Colors - สีลิงก์ (นีออนไซยาน) */
+  --color-link: #00ffcc;
+  --color-link-hover: #4dffda;
+
+  /* Component Colors */
+  --color-tag-bg: #0e4749;
+  --color-tag-text: #00ffcc;
+  --color-card-bg: var(--color-bg-primary);
+  --color-header-bg: var(--color-bg-primary);
+  --color-footer-bg: var(--color-bg-primary);
+
+  /* Special Colors - สีพิเศษ */
+  --color-success: #00ff88;
+  --color-warning: #ffaa00;
+  --color-error: #ff4444;
+  --color-info: #00ccff;
+  --color-accent-purple: #aa55ff;
+  --color-accent-blue: #0099ff;
+  --color-accent-cyan: #00ffcc;
+
+  /* Gradient Colors - สีไล่ระดับ (นีออนสไตล์) */
+  --gradient-primary: linear-gradient(135deg, #0a0d14 0%, #0e4749 25%, #14b8a6 50%, #00ffcc 100%);
+  --gradient-cool: linear-gradient(135deg, #0a0d14 0%, #1a2332 100%);
+  --gradient-accent: linear-gradient(135deg, #00ffcc 0%, #4dffda 100%);
+  --gradient-neon: linear-gradient(180deg, #0a0d14 0%, #0e4749 33%, #14b8a6 66%, #00ffcc 100%);
+  --gradient-purple-cyan: linear-gradient(135deg, #aa55ff 0%, #00ffcc 100%);
+
+  /* Shadow Colors - สีเงา (นีออนโกลว์) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 255, 204, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 255, 204, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 255, 204, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 255, 204, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  --shadow-neon: 0 0 20px rgba(0, 255, 204, 0.3), 0 0 40px rgba(0, 255, 204, 0.1);
+
+  /* Neon Glow Effects - เอฟเฟกต์เรืองแสงนีออน */
+  --glow-cyan: drop-shadow(0 0 10px rgba(0, 255, 204, 0.8));
+  --glow-purple: drop-shadow(0 0 10px rgba(170, 85, 255, 0.8));
+  --glow-blue: drop-shadow(0 0 10px rgba(0, 153, 255, 0.8));
+
+  /* Animation Variables - ตัวแปรสำหรับแอนิเมชัน */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}

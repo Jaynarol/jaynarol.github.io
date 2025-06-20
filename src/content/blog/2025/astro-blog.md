@@ -22,7 +22,3 @@ Astro เป็น framework ที่ยอดเยี่ยมสำหรั
 - Markdown Support
 - Tailwind CSS
 - TypeScript
-
----
-
-_เขียนเมื่อวันที่ 20 มกราคม 2024_
