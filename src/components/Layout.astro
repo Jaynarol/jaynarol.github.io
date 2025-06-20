@@ -18,11 +18,7 @@ export interface Props {
   image?: string
 }
 
-const {
-  title,
-  description = 'บล็อกแห่งการเรียนรู้และแบ่งปัน',
-  image,
-} = Astro.props
+const { title, description, image } = Astro.props
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 ---
 
@@ -34,6 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
 
     <!-- Google Fonts - Noto Sans Thai -->

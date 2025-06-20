@@ -11,7 +11,10 @@ const POSTS_PER_PAGE = 20
 const { allPosts, initialPosts } = await getPostsData(POSTS_PER_PAGE)
 ---
 
-<Layout title="Jaynarol Blog - บล็อกแห่งการเรียนรู้และแบ่งปัน">
+<Layout
+  title="Jaynarol Blog - บันทึกการเรียนรู้และแบ่งปัน"
+  description="พื้นที่ส่วนตัวเล็กๆนี้ อาจจะมีประโยชน์กับ ใครสักคน ในสักทาง..."
+>
   <div class="min-h-screen">
     <!-- Hero Section -->
     <HeroSection />
