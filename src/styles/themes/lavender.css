@@ -1,0 +1,50 @@
+/* Lavender Theme - โทนม่วงหรูหรา */
+:root {
+  /* Primary Colors - สีหลัก */
+  --color-primary-50: #faf5ff;
+  --color-primary-100: #f3e8ff;
+  --color-primary-200: #e9d5ff;
+  --color-primary-300: #d8b4fe;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7c3aed;
+  --color-primary-800: #6b21a8;
+  --color-primary-900: #581c87;
+
+  /* Neutral Colors - สีกลาง (โทนม่วงอ่อน) */
+  --color-neutral-50: #fdfaff;
+  --color-neutral-100: #faf3ff;
+  --color-neutral-200: #f4e6ff;
+  --color-neutral-300: #e9d5ff;
+  --color-neutral-400: #d4bfff;
+  --color-neutral-500: #b197fc;
+  --color-neutral-600: #9775fa;
+  --color-neutral-700: #7c3aed;
+  --color-neutral-800: #6b21a8;
+  --color-neutral-900: #4c1d95;
+
+  /* Semantic Colors - สีตามความหมาย */
+  --color-text-primary: var(--color-primary-900);
+  --color-text-secondary: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-600);
+  --color-text-inverse: var(--color-neutral-50);
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: var(--color-neutral-50);
+  --color-bg-accent: var(--color-primary-50);
+  --color-bg-muted: var(--color-neutral-100);
+
+  --color-border-primary: var(--color-neutral-200);
+  --color-border-secondary: var(--color-neutral-300);
+
+  --color-link: var(--color-primary-600);
+  --color-link-hover: var(--color-primary-700);
+
+  /* Component Colors */
+  --color-tag-bg: var(--color-primary-100);
+  --color-tag-text: var(--color-primary-800);
+  --color-card-bg: var(--color-bg-primary);
+  --color-header-bg: var(--color-bg-primary);
+  --color-footer-bg: var(--color-bg-primary);
+}

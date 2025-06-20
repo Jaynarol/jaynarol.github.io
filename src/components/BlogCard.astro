@@ -1,0 +1,60 @@
+---
+export interface Props {
+  title: string
+  description: string
+  pubDate: Date
+  heroImage?: string
+  tags: string[]
+  slug: string
+}
+
+const { title, description, pubDate, heroImage, tags, slug } = Astro.props
+const formattedDate = new Intl.DateTimeFormat('th-TH', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(pubDate)
+---
+
+<article
+  class="theme-card theme-border-primary rounded-lg border p-6 transition-shadow hover:shadow-md"
+>
+  {
+    heroImage && (
+      <div class="mb-4">
+        <img
+          src={heroImage}
+          alt={title}
+          class="h-48 w-full rounded object-cover"
+        />
+      </div>
+    )
+  }
+
+  <div class="mb-3">
+    {
+      tags.map((tag) => (
+        <span class="theme-tag mr-2 inline-block rounded px-2 py-1 text-sm">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+
+  <h2 class="mb-2 text-xl font-bold">
+    <a href={`/blog/${slug}`} class="theme-text-primary theme-link">
+      {title}
+    </a>
+  </h2>
+
+  <p class="theme-text-secondary mb-4 line-clamp-3">
+    {description}
+  </p>
+
+  <div class="theme-text-muted flex items-center justify-between text-sm">
+    <time datetime={pubDate.toISOString()}>
+      {formattedDate}
+    </time>
+    <a href={`/blog/${slug}`} class="theme-link"> อ่านเพิ่มเติม → </a>
+  </div>
+</article>

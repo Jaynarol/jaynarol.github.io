@@ -1,0 +1,70 @@
+<header class="theme-header theme-border-primary border-b shadow-sm">
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <h1 class="text-2xl font-bold">
+          <a href="/" class="theme-text-primary theme-link"> Jaynarol Blog </a>
+        </h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden items-center space-x-8 md:flex">
+        <a href="/" class="theme-text-secondary theme-link font-medium">
+          หน้าแรก
+        </a>
+        <a href="/about" class="theme-text-secondary theme-link font-medium">
+          เกี่ยวกับ
+        </a>
+        <a href="/contact" class="theme-text-secondary theme-link font-medium">
+          ติดต่อ
+        </a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="theme-text-secondary theme-link">
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div
+      id="mobile-menu"
+      class="theme-border-primary hidden border-t md:hidden"
+    >
+      <div class="space-y-1 py-2">
+        <a
+          href="/"
+          class="theme-text-secondary theme-link block px-3 py-2 font-medium"
+        >
+          หน้าแรก
+        </a>
+        <a
+          href="/about"
+          class="theme-text-secondary theme-link block px-3 py-2 font-medium"
+        >
+          เกี่ยวกับ
+        </a>
+        <a
+          href="/contact"
+          class="theme-text-secondary theme-link block px-3 py-2 font-medium"
+        >
+          ติดต่อ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

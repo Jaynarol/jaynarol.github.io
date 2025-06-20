@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* =================================
+   Theme Variables Support
+   ================================= */
+
+/* Base theme classes using CSS variables */
+.theme-text-primary {
+  color: var(--color-text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--color-text-muted);
+}
+
+.theme-text-inverse {
+  color: var(--color-text-inverse);
+}
+
+.theme-bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.theme-bg-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.theme-bg-accent {
+  background-color: var(--color-bg-accent);
+}
+
+.theme-bg-muted {
+  background-color: var(--color-bg-muted);
+}
+
+.theme-border-primary {
+  border-color: var(--color-border-primary);
+}
+
+.theme-border-secondary {
+  border-color: var(--color-border-secondary);
+}
+
+.theme-link {
+  color: var(--color-link);
+  transition: color 0.2s ease;
+}
+
+.theme-link:hover {
+  color: var(--color-link-hover);
+}
+
+.theme-tag {
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+}
+
+.theme-card {
+  background-color: var(--color-card-bg);
+}
+
+.theme-header {
+  background-color: var(--color-header-bg);
+}
+
+.theme-footer {
+  background-color: var(--color-footer-bg);
+}
+
+/* =================================
+   Utility Classes
+   ================================= */
+@layer components {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
