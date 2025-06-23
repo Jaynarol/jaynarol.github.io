@@ -1,24 +1,13 @@
 ---
-import {
-  generateGradientDataURL,
-  getRandomGradientIndex,
-} from '../utils/gradientGenerator'
+import type { BlogProps } from '../types'
+import { formatThaiDate } from '../utils/dateUtils'
+import { formatDistanceToNow } from 'date-fns'
 
-export interface Props {
-  title: string
-  description: string
-  heroImage?: string
-  tags: string[]
-  pubDate: Date
-  formattedDate: string
-}
-
-const { title, description, heroImage, tags, pubDate, formattedDate } =
-  Astro.props
-
-// Generate fallback gradient if no hero image
-const fallbackGradient = generateGradientDataURL(getRandomGradientIndex())
-const heroImageSrc = heroImage || fallbackGradient
+const props = Astro.props as BlogProps & { optimizedHeroImage?: string }
+const { title, description, pubDate, optimizedHeroImage, tags, heroImage } =
+  props
+const formattedDate = formatThaiDate(pubDate)
+const timeAgo = formatDistanceToNow(pubDate, { addSuffix: true })
 ---
 
 <!-- Hero Section with Parallax Effect -->
@@ -26,23 +15,17 @@ const heroImageSrc = heroImage || fallbackGradient
   <!-- Parallax Background Image -->
   <div
     id="hero-bg"
-    class="absolute inset-0 scale-110 transform bg-cover bg-center transition-transform duration-100 ease-out"
-    style={`background-image: url(${heroImageSrc})`}
-  >
-  </div>
+    class="absolute inset-0 scale-100 transform bg-cover bg-center transition-transform duration-100 ease-out"
+    style={`background-image: url(${optimizedHeroImage})`}
+  />
 
   <!-- Overlay - เข้มขึ้นเพื่อให้ text อ่านง่าย -->
   {
     heroImage && (
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+      <div class="bg-radial-gradient absolute inset-0 from-transparent via-black/30 to-transparent" />
     )
   }
-
-  <!-- Additional center overlay for better text readability -->
-  <div
-    class="bg-radial-gradient absolute inset-0 from-transparent via-black/30 to-transparent"
-  >
-  </div>
 
   <!-- Content -->
   <div
@@ -80,13 +63,18 @@ const heroImageSrc = heroImage || fallbackGradient
       </p>
 
       <!-- Date -->
-      <time
-        class="text-sm text-gray-200 drop-shadow-lg"
-        style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);"
-        datetime={pubDate.toISOString()}
-      >
-        {formattedDate}
-      </time>
+      <div class="text-sm text-gray-200 drop-shadow-lg">
+        <time
+          style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);"
+          datetime={pubDate.toISOString()}
+        >
+          {formattedDate}
+        </time>
+        <span class="mx-2 text-gray-300">•</span>
+        <span style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);">
+          {timeAgo}
+        </span>
+      </div>
     </div>
   </div>
 </section>
@@ -94,12 +82,12 @@ const heroImageSrc = heroImage || fallbackGradient
 <script>
   // Parallax effect for hero section
   window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset
+    const scrolled = window.scrollY
     const hero = document.getElementById('hero-bg') as HTMLElement
 
     if (hero) {
-      const speed = 0.3
-      hero.style.transform = `scale(1.1) translateY(${scrolled * speed}px)`
+      const speed = 1
+      hero.style.transform = `translateY(${scrolled * speed}px)`
     }
   })
 </script>

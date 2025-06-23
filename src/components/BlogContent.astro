@@ -1,9 +1,11 @@
 ---
-export interface Props {
-  Content: any
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js'
+
+type Props = {
+  Content: AstroComponentFactory
 }
 
-const { Content } = Astro.props
+const { Content } = Astro.props as Props
 ---
 
 <!-- Article Content -->

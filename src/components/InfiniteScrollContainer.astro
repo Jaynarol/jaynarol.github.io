@@ -4,10 +4,11 @@ import PostCounter from './PostCounter.astro'
 import LoadingIndicator from './LoadingIndicator.astro'
 import EmptyState from './EmptyState.astro'
 import { MOCK_MODE } from '../utils/mockData'
+import type { BlogProps } from '../types'
 
 export interface Props {
-  allPosts: any[]
-  initialPosts: any[]
+  allPosts: BlogProps[]
+  initialPosts: BlogProps[]
   postsPerPage: number
 }
 
@@ -31,14 +32,7 @@ const { allPosts, initialPosts, postsPerPage } = Astro.props
               class="blog-card-wrapper translate-y-8 opacity-0 transition-all duration-700 ease-out"
               data-index={index}
             >
-              <BlogCard
-                title={post.title}
-                description={post.description}
-                pubDate={post.pubDate}
-                heroImage={post.heroImage}
-                tags={post.tags}
-                slug={post.slug}
-              />
+              <BlogCard {...post} />
             </div>
           ))}
         </div>

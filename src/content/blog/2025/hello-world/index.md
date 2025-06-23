@@ -1,8 +1,9 @@
 ---
 title: 'Hello World'
 description: 'สร้างบล็อกฟรีด้วย Astro + GitHub Pages'
-pubDate: 2025-01-01
-heroImage: '/images/blog/hello-world.png'
+pubDate: 2025-06-20
+heroImage: './images/hero.png'
+heroColor: 'ocean-breeze'
 tags: ['Astro', 'Development', 'Technology']
 ---
 
@@ -39,7 +40,6 @@ const currentDate = new Date();
 
 **ฟรี + ไม่ต้องกังวลเรื่องค่าโฮสต์ = สบายใจสบายกระเป๋า** 💰
 
-
 ## ทำไมถึงเลือกเขียนบล็อก?
 
 ผมเป็นคนชอบโน๊ต ชอบบันทึกสิ่งต่างๆ ที่เรียนรู้มา การมีบล็อกส่วนตัวเลยเป็นเหมือนมีคลังข้อมูลส่วนตัวที่:
@@ -47,7 +47,9 @@ const currentDate = new Date();
 - เก็บความรู้ไว้ดูย้อนหลังได้
 - แบ่งปันประสบการณ์ให้คนอื่น
 - บังคับให้เราเรียนรู้และทำความเข้าใจลึกขึ้น
-- สร้าง portfolio ส่วนตัว
+- ค้นหาความรู้เก่าๆง่ายๆ
+
+![รูปภาพของผม](./images/test.png)
 
 ## สิ่งที่จะมาต่อ
 
@@ -62,4 +64,4 @@ const currentDate = new Date();
 
 ---
 
-*P.S. ถ้าใครสนใจโค้ดของบล็อกนี้ สามารถดูได้ที่ [GitHub repo](https://github.com/Jaynarol/jaynarol.github.io) ของผมเลยครับ*
+_P.S. ถ้าใครสนใจโค้ดของบล็อกนี้ สามารถดูได้ที่ [GitHub repo](https://github.com/Jaynarol/jaynarol.github.io) ของผมเลยครับ_

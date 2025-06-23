@@ -1,23 +1,22 @@
+import { getImage } from 'astro:assets'
 import { getCollection } from 'astro:content'
+import type { BlogProps } from '../types'
+import {
+  generateGradientDataURL,
+  getRandomGradientIndex,
+} from './gradientGenerator'
 import { MOCK_MODE, generateMockPosts } from './mockData'
 
-export type BlogPost = Omit<
-  Awaited<ReturnType<typeof getCollection>>[number]['data'],
-  'draft'
-> & {
-  slug: string
-}
-
 export interface PostsData {
-  allPosts: BlogPost[]
-  initialPosts: BlogPost[]
+  allPosts: BlogProps[]
+  initialPosts: BlogProps[]
 }
 
 /**
  * Get all blog posts - either from real content or mock data
  */
-export async function getAllPosts(): Promise<BlogPost[]> {
-  let posts: BlogPost[] = []
+export async function getAllPosts(): Promise<BlogProps[]> {
+  let posts: BlogProps[] = []
 
   if (MOCK_MODE) {
     // Use mock data
@@ -34,8 +33,10 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       description: post.data.description,
       pubDate: post.data.pubDate,
       heroImage: post.data.heroImage,
+      heroColor: post.data.heroColor,
       tags: post.data.tags,
       slug: post.slug,
+      draft: post.data.draft,
     }))
 
     // Sort by publication date
@@ -91,7 +92,7 @@ export function getPostUrl(slug: string): string {
 /**
  * Check if post has image
  */
-export function hasImage(post: BlogPost): boolean {
+export function hasImage(post: BlogProps): boolean {
   return Boolean(post.heroImage)
 }
 
@@ -99,7 +100,7 @@ export function hasImage(post: BlogPost): boolean {
  * Get post excerpt
  */
 export function getPostExcerpt(
-  post: BlogPost,
+  post: BlogProps,
   maxLength: number = 150,
 ): string {
   return truncateText(post.description, maxLength)
@@ -108,7 +109,7 @@ export function getPostExcerpt(
 /**
  * Filter posts by tag
  */
-export function filterPostsByTag(posts: BlogPost[], tag: string): BlogPost[] {
+export function filterPostsByTag(posts: BlogProps[], tag: string): BlogProps[] {
   return posts.filter((post) =>
     post.tags.some((postTag) =>
       postTag.toLowerCase().includes(tag.toLowerCase()),
@@ -119,7 +120,7 @@ export function filterPostsByTag(posts: BlogPost[], tag: string): BlogPost[] {
 /**
  * Get unique tags from posts
  */
-export function getUniqueTags(posts: BlogPost[]): string[] {
+export function getUniqueTags(posts: BlogProps[]): string[] {
   const tags = posts.flatMap((post) => post.tags)
   return [...new Set(tags)].sort()
 }
@@ -127,11 +128,20 @@ export function getUniqueTags(posts: BlogPost[]): string[] {
 /**
  * Search posts by title or description
  */
-export function searchPosts(posts: BlogPost[], query: string): BlogPost[] {
+export function searchPosts(posts: BlogProps[], query: string): BlogProps[] {
   const searchTerm = query.toLowerCase()
   return posts.filter(
     (post) =>
       post.title.toLowerCase().includes(searchTerm) ||
       post.description.toLowerCase().includes(searchTerm),
   )
+}
+
+export async function getOptimizedHeroImage(
+  heroImage?: ImageMetadata,
+  heroColor?: string,
+): Promise<string> {
+  return heroImage
+    ? (await getImage({ src: heroImage }))?.src
+    : generateGradientDataURL(getRandomGradientIndex(heroColor))
 }

@@ -50,9 +50,124 @@ export const gradientSchemes = [
   },
 ]
 
-// Generate SVG with specific gradient scheme
-export function generateGradientSVG(schemeIndex: number = 0): string {
-  const scheme = gradientSchemes[schemeIndex % gradientSchemes.length]
+// Helper function to convert hex to HSL
+function hexToHsl(hex: string): [number, number, number] {
+  const r = parseInt(hex.slice(1, 3), 16) / 255
+  const g = parseInt(hex.slice(3, 5), 16) / 255
+  const b = parseInt(hex.slice(5, 7), 16) / 255
+
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  let h = 0
+  let s = 0
+  const l = (max + min) / 2
+
+  if (max !== min) {
+    const d = max - min
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    switch (max) {
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0)
+        break
+      case g:
+        h = (b - r) / d + 2
+        break
+      case b:
+        h = (r - g) / d + 4
+        break
+    }
+    h /= 6
+  }
+
+  return [h * 360, s * 100, l * 100]
+}
+
+// Helper function to convert HSL to hex
+function hslToHex(h: number, s: number, l: number): string {
+  h = h % 360
+  s = Math.max(0, Math.min(100, s)) / 100
+  l = Math.max(0, Math.min(100, l)) / 100
+
+  const c = (1 - Math.abs(2 * l - 1)) * s
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
+  const m = l - c / 2
+
+  let r = 0,
+    g = 0,
+    b = 0
+
+  if (0 <= h && h < 60) {
+    r = c
+    g = x
+    b = 0
+  } else if (60 <= h && h < 120) {
+    r = x
+    g = c
+    b = 0
+  } else if (120 <= h && h < 180) {
+    r = 0
+    g = c
+    b = x
+  } else if (180 <= h && h < 240) {
+    r = 0
+    g = x
+    b = c
+  } else if (240 <= h && h < 300) {
+    r = x
+    g = 0
+    b = c
+  } else if (300 <= h && h < 360) {
+    r = c
+    g = 0
+    b = x
+  }
+
+  r = Math.round((r + m) * 255)
+  g = Math.round((g + m) * 255)
+  b = Math.round((b + m) * 255)
+
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+}
+
+// Generate color palette from a base hex color
+function generateColorPalette(baseColor: string): {
+  colors: string[]
+  overlays: string[]
+} {
+  const [h, s, l] = hexToHsl(baseColor)
+
+  // Generate 5 main colors with variations in hue, saturation, and lightness
+  const colors = [
+    baseColor, // Original color
+    hslToHex((h + 30) % 360, Math.max(40, s - 10), Math.min(85, l + 15)), // Warmer, lighter
+    hslToHex((h - 20) % 360, Math.min(90, s + 15), Math.max(30, l - 10)), // Cooler, darker
+    hslToHex((h + 60) % 360, Math.max(50, s - 5), Math.min(80, l + 10)), // Complementary-ish
+    hslToHex((h - 40) % 360, Math.min(80, s + 10), Math.max(40, l - 5)), // Analogous
+  ]
+
+  // Generate overlay colors (lighter, more transparent versions)
+  const overlays = [
+    hslToHex(h, Math.max(30, s - 20), Math.min(90, l + 25)), // Much lighter
+    hslToHex((h + 45) % 360, Math.max(40, s - 15), Math.min(85, l + 20)), // Light warm
+    hslToHex((h - 30) % 360, Math.max(35, s - 10), Math.min(80, l + 15)), // Light cool
+  ]
+
+  return { colors, overlays }
+}
+
+// Generate SVG with specific gradient scheme or hex color
+export function generateGradientSVG(
+  schemeIndexOrHexColor: number | string = 0,
+): string {
+  let scheme: { colors: string[]; overlays: string[] }
+
+  if (typeof schemeIndexOrHexColor === 'string') {
+    // Generate palette from hex color
+    scheme = generateColorPalette(schemeIndexOrHexColor)
+  } else {
+    // Use predefined scheme
+    scheme = gradientSchemes[schemeIndexOrHexColor % gradientSchemes.length]
+  }
 
   return `<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -114,12 +229,24 @@ export function generateGradientSVG(schemeIndex: number = 0): string {
 }
 
 // Generate data URL for inline SVG
-export function generateGradientDataURL(schemeIndex: number = 0): string {
-  const svg = generateGradientSVG(schemeIndex)
+export function generateGradientDataURL(
+  schemeIndexOrHexColor: number | string = 0,
+): string {
+  const svg = generateGradientSVG(schemeIndexOrHexColor)
   return `data:image/svg+xml;base64,${btoa(svg)}`
 }
 
 // Get random gradient scheme index
-export function getRandomGradientIndex(): number {
+export function getRandomGradientIndex(
+  heroColor?: (typeof gradientSchemes)[number]['id'],
+): number {
+  console.log(heroColor)
+  if (heroColor) {
+    const index = gradientSchemes.findIndex((scheme) => scheme.id === heroColor)
+    if (index >= 0) {
+      return index
+    }
+  }
+
   return Math.floor(Math.random() * gradientSchemes.length)
 }

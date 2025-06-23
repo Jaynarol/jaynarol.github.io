@@ -4,7 +4,7 @@ import BlogContent from '../../components/BlogContent.astro'
 import BlogHero from '../../components/BlogHero.astro'
 import Layout from '../../components/Layout.astro'
 import RecommendedPosts from '../../components/RecommendedPosts.astro'
-import { formatThaiDate } from '../../utils/dateUtils'
+import { getOptimizedHeroImage } from '../../utils/blogUtils'
 import { getRecommendedPosts } from '../../utils/recommendationUtils'
 
 export async function getStaticPaths() {
@@ -20,28 +20,20 @@ const post = await getEntry('blog', slug)
 if (!post) throw new Error(`Post not found: ${slug}`)
 
 const { Content } = await post.render()
-const formattedDate = formatThaiDate(post.data.pubDate)
 
 // Get all posts for recommendations
 const allPosts = await getCollection('blog', ({ data }) => !data.draft)
 const recommendedPosts = getRecommendedPosts(allPosts, slug)
+const { title, description, heroImage, heroColor } = post.data
+const optimizedHeroImage = await getOptimizedHeroImage(heroImage, heroColor)
 ---
 
 <Layout
-  title={post.data.title}
-  description={post.data.description}
-  image={post.data.heroImage}
+  title={title}
+  description={description}
+  image={heroImage ? optimizedHeroImage : undefined}
 >
-  <BlogHero
-    title={post.data.title}
-    description={post.data.description}
-    heroImage={post.data.heroImage}
-    tags={post.data.tags}
-    pubDate={post.data.pubDate}
-    formattedDate={formattedDate}
-  />
-
+  <BlogHero {...post.data} optimizedHeroImage={optimizedHeroImage} />
   <BlogContent Content={Content} />
-
   <RecommendedPosts posts={recommendedPosts} />
 </Layout>
