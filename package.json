@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "node scripts/optimize-images.js && astro build && git add -A && git commit -m \"update content\" && git push"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
@@ -21,6 +22,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.13"
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "sharp": "^0.33.0"
   }
 }
