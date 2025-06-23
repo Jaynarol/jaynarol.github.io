@@ -13,6 +13,8 @@ export const VALID_TAGS = [
   'นิยาย',
   'การค้นพบตนเอง',
   'งานอดิเรก',
+  'อริยสัจ ๔',
+  'ขันธ์ ๕',
 ]
 
 // Helper functions

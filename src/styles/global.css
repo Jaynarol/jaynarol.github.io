@@ -139,7 +139,9 @@ html {
 
   /* Remove the default quotation marks from the paragraphs inside the question blockquote */
   .prose blockquote:has(> p:first-child > strong:first-child) p:first-of-type::before,
-  .prose blockquote:has(> p:first-child > strong:first-child) p:last-of-type::after {
+  .prose blockquote:has(> p:first-child > strong:first-child) p:last-of-type::after,
+  .prose blockquote:has(> p:first-child) p:first-of-type::before,
+  .prose blockquote:has(> p:first-child) p:last-of-type::after {
     @apply content-[''];
   }
 }
