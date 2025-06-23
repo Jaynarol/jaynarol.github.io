@@ -7,6 +7,9 @@ export const VALID_TAGS = [
   'ชีวิต',
   'การเรียนรู้',
   'ประสบการณ์',
+  'สมาธิ',
+  'เจริญสติ',
+  'AI Q&A',
 ]
 
 // Helper functions

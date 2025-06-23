@@ -109,3 +109,37 @@ nav {
 html {
   scroll-behavior: smooth;
 }
+
+/* =================================
+   Custom Quote Block for Questions
+   ================================= */
+@layer utilities {
+
+  /*
+    This targets blockquotes that are specifically formatted as questions.
+    The convention is that a question blockquote starts with a <strong> tag,
+    which usually contains a short title like "Question:" or a summary.
+    The :has() selector allows us to style these blockquotes uniquely
+    without adding custom classes to the Markdown.
+  */
+  .prose blockquote:has(> p:first-child > strong:first-child) {
+    @apply border-none bg-white/5 rounded-xl py-2 px-6 shadow-md;
+    font-style: normal;
+  }
+
+  /* Style for the body of the question */
+  .prose blockquote:has(> p:first-child > strong:first-child)>p {
+    @apply text-white/80;
+  }
+
+  /* This overrides the default bold styling for <strong> tags inside the question blockquote */
+  .prose blockquote:has(> p:first-child > strong:first-child) strong {
+    @apply font-normal;
+  }
+
+  /* Remove the default quotation marks from the paragraphs inside the question blockquote */
+  .prose blockquote:has(> p:first-child > strong:first-child) p:first-of-type::before,
+  .prose blockquote:has(> p:first-child > strong:first-child) p:last-of-type::after {
+    @apply content-[''];
+  }
+}
