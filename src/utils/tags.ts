@@ -10,6 +10,9 @@ export const VALID_TAGS = [
   'สมาธิ',
   'เจริญสติ',
   'AI Q&A',
+  'นิยาย',
+  'การค้นพบตนเอง',
+  'งานอดิเรก',
 ]
 
 // Helper functions
