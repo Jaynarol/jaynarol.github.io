@@ -10,9 +10,9 @@
     "deploy": "node scripts/optimize-images.js && astro build && git add -A && git commit -m \"update content\" && git push"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.4.1",
+    "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.10.0",
+    "astro": "^5.14.3",
     "date-fns": "^3.6.0",
     "lucide-astro": "^0.344.0",
     "rehype-external-links": "^3.0.0",
