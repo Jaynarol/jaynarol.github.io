@@ -16,6 +16,8 @@ export const VALID_TAGS = [
   'อริยสัจ ๔',
   'ขันธ์ ๕',
   'ปฏิจจสมุปบาท',
+  'วิปัสสนา',
+  'สมถะ',
 ]
 
 // Helper functions
