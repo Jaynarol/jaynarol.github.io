@@ -18,6 +18,8 @@ export const VALID_TAGS = [
   'ปฏิจจสมุปบาท',
   'วิปัสสนา',
   'สมถะ',
+  'ฉันทะ',
+  'อิทธิบาท ๔',
 ]
 
 // Helper functions
